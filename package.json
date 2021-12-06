@@ -1,0 +1,22 @@
+{
+  "name": "ten-minutes-shippable-dataplane-sdk",
+  "version": "1.0.0",
+  "description": "This project provides a docker image, which can get data-plane sdk of different language easily.",
+  "main": "entrypoint.js",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "prepack": "npm run build"
+  },
+  "bin": {
+    "dataplane-sdk-entrypoint": "dist/entrypoint.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.11",
+    "rimraf": "^3.0.2"
+  }
+}
