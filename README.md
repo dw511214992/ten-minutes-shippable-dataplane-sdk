@@ -4,7 +4,7 @@ This project provides a docker image, which can get data-plane sdk of different 
 
 ## Prerequisites
 
-- Install [docker](https://www.docker.com/)
+- Install [docker](https://www.docker.com/).
 - Clone SDK repository. The following are sdk repos that our project supports.
 
     | SDK | Public Repository | Private Repository |
@@ -19,7 +19,7 @@ This project provides a docker image, which can get data-plane sdk of different 
     ```
    For example:
     ```shell
-    docker run -it -v d:\\azure-sdk-for-js:/sdk-repo --entrypoint "/bin/bash" dw225/data-plane-sdk
+    docker run -it -v D:\azure-sdk-for-js:/sdk-repo dw225/data-plane-sdk
     ```
 
 2. After the docker container is started, it will ask you which language you want to get:
