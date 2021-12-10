@@ -7,7 +7,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt -y install nodejs
 RUN npm install -g autorest
 RUN npm install -g @microsoft/rush
-RUN npm install -g draft-js-sdk-release-tools@0.1.8
+RUN npm install -g draft-js-sdk-release-tools
 COPY *.tgz pack.tgz
 RUN npm install -g pack.tgz
 COPY scripts /scripts

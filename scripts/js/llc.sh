@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-rlc-code-gen
+rlc-code-gen --interactive
