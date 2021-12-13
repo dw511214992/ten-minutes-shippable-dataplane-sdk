@@ -5,13 +5,14 @@ This project provides a docker image, which can get data-plane sdk of different 
 ## Prerequisites
 
 - Install [docker](https://www.docker.com/), and run it without WSL.
-  ![docker](docs/docker.png)  
-- Clone SDK repository. The following are sdk repos that our project supports.
+  ![docker](docs/docker.png)
+
+- Clone SDK repository by [Git](https://git-scm.com/). The following are sdk repos that our project supports.
 
     | SDK | Public Repository | Private Repository |
     | :-----| :----- | :----- |
     | JS | https://github.com/Azure/azure-sdk-for-js | https://github.com/Azure/azure-sdk-for-js-pr |
-
+  For Example: `git clone https://github.com/Azure/azure-sdk-for-js.git`
 ## How to Use
 
 1. Run docker container with command:
