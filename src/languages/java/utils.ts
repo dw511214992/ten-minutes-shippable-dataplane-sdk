@@ -29,7 +29,7 @@ export function findPackageInRepo(moduleName, sdkRepo) {
             }
             let readmeMdPath: string;
             if (fs.existsSync(path.join(sdkRepo, 'sdk', rp, p, 'swagger'))) {
-                readmeMdPath = getReadmeMdFile(path.join(sdkRepo, 'sdk', rp, p, 'swagger'));
+                readmeMdPath = getReadmeMdFilePath(path.join(sdkRepo, 'sdk', rp, p, 'swagger'));
             }
             if (!!readmeMdPath) {
                 const readme = fs.readFileSync(readmeMdPath, {encoding: 'utf-8'});
@@ -47,7 +47,7 @@ export function findPackageInRepo(moduleName, sdkRepo) {
     return undefined;
 }
 
-export function getReadmeMdFile(swaggerFolderPath: string) {
+export function getReadmeMdFilePath(swaggerFolderPath: string) {
     const files = fs.readdirSync(swaggerFolderPath);
     let readmeMdPath: string;
     if (files.includes('README_SPEC.md')) {

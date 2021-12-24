@@ -13,11 +13,11 @@ import {getPackageFolderName} from "./languages/js/utils";
 async function main() {
     logger.log(`Welcome to use Ten Minutes Shippable Dataplane SDK tools to generate SDK.`);
 
-    if (!fs.existsSync('projects')) {
-        throw new Error(`Please mount folder projects`);
+    if (!fs.existsSync('sdk-repos')) {
+        throw new Error(`Please mount folder sdk-repos`);
     }
 
-    process.chdir(path.join(process.cwd(), 'projects'));
+    process.chdir(path.join(process.cwd(), 'sdk-repos'));
     const sdkReposPath = process.cwd();
 
     const languages: string[] = await getLanguage();
@@ -27,6 +27,7 @@ async function main() {
 
     // get necessary information
     for (const language of languages) {
+        logger.logGreen(`Please input required information for generating ${language} sdk...`);
         switch (language) {
             case 'js':
                 await jsInteractiveCli(sdkReposPath);
@@ -71,6 +72,7 @@ async function main() {
     logger.logGreen(`********************************************`);
     logger.logGreen(`********************************************`);
     logger.logGreen(`Generate codes for ${languages.join(', ')} successfully`);
+    logger.logGreen(``);
     for (const language of languages) {
         let sdkPath: string;
         switch (language) {

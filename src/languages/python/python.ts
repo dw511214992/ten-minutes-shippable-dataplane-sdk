@@ -3,7 +3,6 @@ import {sdkRepositories} from "../../lib/cloneRepoitory";
 import {getInputFromCommand} from "../../utils/getInputFromCommand";
 import {commonFields, setCommonFields} from "../../lib/commonFields";
 import {findPackageInRepo, getPackagePrintName} from "./utils";
-import * as fs from "fs";
 import {getConfigFromReadmeMd, getServiceFromPackagePath} from "../utils";
 import * as child_process from "child_process";
 
@@ -28,38 +27,32 @@ export const pythonInfo: PythonInfo = {
 const hints = {
     packageName: '[PYTHON SDK] What is packageName? It should be in format azure-xxxxx, sample: azure-storage-blob. Please input it:',
     packagePrintName: '[PYTHON SDK] What is print name of the package. Sample: Azure Storage Service. Please input it:',
-    service: '[PYTHON SDK] Which service folder do you want to store your package in sdk folder? Sample: storage. Please input it:',
-    title: '[PYTHON SDK] What is the client name? It should be end with Client. Sample: BlobClient. Please input it:',
-    inputFile: '[PYTHON SDK] Please input the swagger files:',
-    credentialScopes: '[PYTHON SDK] Please input credential-scopes of your service:'
+    service: '[COMMON PARAMETER] Which service folder do you want to store your package in sdk folder? Sample: storage. Please input it:',
+    title: '[COMMON PARAMETER] What is the client name? It should be end with Client. Sample: BlobClient. Please input it:',
+    inputFile: '[COMMON PARAMETER] Please input the swagger files:',
+    credentialScopes: '[COMMON PARAMETER] Please input credential-scopes of your service:'
 }
 
 export async function pythonInteractiveCli(sdkReposPath: string) {
     process.chdir(path.join(sdkReposPath, sdkRepositories.python));
     pythonInfo.packageName = await getInputFromCommand(hints.packageName, {regex: /^azure-[a-zA-Z-]+/});
     const packagePath = findPackageInRepo(pythonInfo.packageName, process.cwd());
-    if (!packagePath || !fs.existsSync(path.join(packagePath, 'swagger', 'README.md'))) {
-        if (!packagePath) {
-            pythonInfo.service = await getInputFromCommand(hints.service, {defaultValue: commonFields.service});
-        } else {
-            pythonInfo.service = await getInputFromCommand(hints.service, {defaultValue: getServiceFromPackagePath(packagePath)});
-        }
-        pythonInfo.title = await getInputFromCommand(hints.title, {defaultValue: commonFields.title, regex: /^[a-zA-z0-9]+Client/});
-        pythonInfo.packagePrintName = await getInputFromCommand(hints.packagePrintName);
-        pythonInfo.inputFile = await getInputFromCommand(hints.inputFile, {defaultValue: commonFields.inputFile});
-        pythonInfo.credentialScopes = await getInputFromCommand(hints.credentialScopes, {defaultValue: commonFields.credentialScopes});
-    } else {
-        const readme = await getConfigFromReadmeMd(path.join(packagePath, 'swagger', 'README.md'));
-        const printNameInToml = getPackagePrintName(path.join(packagePath, 'sdk_packaging.toml'));
+    const readme = packagePath? await getConfigFromReadmeMd(path.join(packagePath, 'swagger', 'README.md')) : undefined;
+    const printNameInToml = packagePath? getPackagePrintName(path.join(packagePath, 'sdk_packaging.toml')) : undefined;
+    pythonInfo.packagePrintName = await getInputFromCommand(hints.packagePrintName, {defaultValue: printNameInToml});
+    if (!!packagePath) {
         pythonInfo.service = await getInputFromCommand(hints.service, {defaultValue: getServiceFromPackagePath(packagePath)});
-        pythonInfo.title = await getInputFromCommand(hints.title, {defaultValue: readme['title'] ? readme['title'] : commonFields.title, regex: /^[a-zA-z0-9]+Client/});
-        pythonInfo.packagePrintName = await getInputFromCommand(hints.packagePrintName, {defaultValue: printNameInToml});
-        pythonInfo.inputFile = await getInputFromCommand(hints.inputFile, {defaultValue: readme['input-file'] ? readme['input-file'] : commonFields.inputFile});
-        pythonInfo.credentialScopes = await getInputFromCommand(hints.credentialScopes, {defaultValue: readme['credential-scope'] ? readme['credential-scope'] : commonFields.credentialScopes});
+    } else {
+        pythonInfo.service = commonFields.service ? commonFields.service : await getInputFromCommand(hints.service);
     }
+    pythonInfo.title = commonFields.title ? commonFields.title : await getInputFromCommand(hints.title, {
+        defaultValue: readme ? readme['title'] : undefined,
+        regex: /^[a-zA-z0-9]+Client/
+    });
+    pythonInfo.inputFile = commonFields.inputFile ? commonFields.inputFile : await getInputFromCommand(hints.inputFile, {defaultValue: readme ? readme['input-file'] : undefined});
+    pythonInfo.credentialScopes = commonFields.credentialScopes ? commonFields.credentialScopes : await getInputFromCommand(hints.credentialScopes, {defaultValue: readme ? readme['credential-scopes'] : undefined});
     setCommonFields(commonFields, pythonInfo);
-
-    process.chdir(sdkReposPath)
+    process.chdir(sdkReposPath);
 }
 
 export async function generatePythonDataplaneSdk(sdkReposPath: string) {

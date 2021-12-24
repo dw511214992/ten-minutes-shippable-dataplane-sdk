@@ -11,12 +11,17 @@ export function getServiceFromPackagePath(packagePath: string): string {
 
 
 export function getConfigFromReadmeMd(readmePath: string) {
+    if (!fs.existsSync(readmePath)) return undefined;
     const readme = fs.readFileSync(readmePath, {encoding: 'utf-8'});
-    const match = /```yaml((.|\n)*)```/.exec(readme);
-    if (!match || match.length !== 3) {
-        logger.logError(`Cannot find valid package name from ${readmePath}`);
-        process.exit(1);
+    const match = /``` *yaml([^`]*)```/g.exec(readme);
+    if (!match) {
+        throw new Error(`Cannot parse yaml in ${readmePath}`);
     }
-    const yaml = require('js-yaml');
-    return yaml.load(match[1]);
+    for (const m of match) {
+        if (m.includes('input-file') && m.includes('credential-scopes')) {
+            const yaml = require('js-yaml');
+            return yaml.load(match[1]);
+        }
+    }
+    return undefined;
 }
