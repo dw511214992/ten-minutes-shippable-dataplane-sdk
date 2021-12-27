@@ -26,5 +26,5 @@ Also, if you are generating sdks for multi-language, you may not need to input s
 
 3. Then the tool will help generate codes and build the generated codes automatically. At last, the tool tells where the generated codes store.
   ```shell
-  Please find java codes in /projects/azure-sdk-for-java/sdk/sample/sample-rest
+  Please find java codes in /sdk-repos/azure-sdk-for-java/sdk/sample/sample-rest
   ```

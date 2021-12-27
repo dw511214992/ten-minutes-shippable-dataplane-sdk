@@ -33,6 +33,7 @@ Also, if you are generating sdks for multi-language, you may not need to input s
   ```
 
 4. After finishing generating codes, you may need to update some files, write your own tests and samples. For the details, please go to the following sections.
+  *hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.*
   - [Update README.md](#update-readmemd)
   - [Write your own test](#write-your-own-test)
   - [Write samples](#write-samples)
