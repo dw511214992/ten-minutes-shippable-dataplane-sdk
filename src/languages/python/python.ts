@@ -5,6 +5,7 @@ import {commonFields, setCommonFields} from "../../lib/commonFields";
 import {findPackageInRepo, getPackagePrintName} from "./utils";
 import {getConfigFromReadmeMd, getServiceFromPackagePath} from "../utils";
 import * as child_process from "child_process";
+import {logger} from "../../utils/logger";
 
 export type PythonInfo = {
     packageName: string;
@@ -57,9 +58,13 @@ export async function pythonInteractiveCli(sdkReposPath: string) {
 
 export async function generatePythonDataplaneSdk(sdkReposPath: string) {
     process.chdir(path.join(sdkReposPath, sdkRepositories.python));
-    child_process.execSync(`python3 -m venv venv-dev`, {stdio: 'inherit'});
-    child_process.execSync(`source venv-dev/bin/activate`, {stdio: 'inherit'});
+    child_process.execSync(`python3 -m venv venv`, {stdio: 'inherit'});
+    child_process.execSync(`source venv/bin/activate`, {stdio: 'inherit'});
     child_process.execSync(`pip3 install -r ${path.join(process.cwd(), 'scripts', 'quickstart_tooling_llc', 'dev_requirements.txt')}`, {stdio: 'inherit'});
-    child_process.execSync(`python3 ${path.join(process.cwd(), 'scripts', 'quickstart_tooling_llc', 'llc_initial.py')} --output-folder ${path.join(process.cwd(), 'sdk', pythonInfo.service, pythonInfo.packageName)} --input-file ${pythonInfo.inputFile} --credential-scope ${pythonInfo.credentialScopes} --package-name ${pythonInfo.packageName} --package-pprint-name "${pythonInfo.packagePrintName}" --client-name ${pythonInfo.title}`, {stdio: 'inherit'});
+    const command = `python3 ${path.join(process.cwd(), 'scripts', 'quickstart_tooling_llc', 'llc_initial.py')} --output-folder ${path.join(process.cwd(), 'sdk', pythonInfo.service, pythonInfo.packageName)} --input-file ${pythonInfo.inputFile} --credential-scope ${pythonInfo.credentialScopes} --package-name ${pythonInfo.packageName} --package-pprint-name "${pythonInfo.packagePrintName}" --client-name ${pythonInfo.title}`;
+    logger.logGreen('=================================================================')
+    logger.logGreen(command);
+    logger.logGreen('=================================================================')
+    child_process.execSync(command, {stdio: 'inherit'});
     process.chdir(sdkReposPath)
 }

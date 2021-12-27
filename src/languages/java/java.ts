@@ -5,6 +5,7 @@ import {commonFields, setCommonFields} from "../../lib/commonFields";
 import {findPackageInRepo, getReadmeMdFilePath} from "./utils";
 import {getConfigFromReadmeMd, getServiceFromPackagePath} from "../utils";
 import * as child_process from "child_process";
+import {logger} from "../../utils/logger";
 
 export type JavaInfo = {
     module: string;
@@ -25,7 +26,7 @@ export const javaInfo: JavaInfo = {
 const hints = {
     module: '[JAVA SDK] What is the module name? It should be in format azure-xxxxx. Sample: azure-storage-blob. Please input it:',
     service: '[COMMON PARAMETER] Which service folder do you want to store your package in sdk folder? Sample: storage. Please input it:',
-    title: '[COMMON PARAMETER] What is the client name? It should be end with Client? Sample: BlobClient. Please input it:',
+    title: '[COMMON PARAMETER] What is the client name? It should be end with Client. Sample: BlobClient. Please input it:',
     inputFile: '[COMMON PARAMETER] Please input the swagger files:',
     credentialScopes: '[COMMON PARAMETER] Please input credential-scopes of your service:'
 }
@@ -52,6 +53,10 @@ export async function javaInteractiveCli(sdkReposPath: string) {
 
 export async function generateJavaDataplaneSdk(sdkReposPath: string) {
     process.chdir(path.join(sdkReposPath, sdkRepositories.java));
-    child_process.execSync(`python3 ${path.join(process.cwd(), 'eng', 'mgmt', 'automation', 'generate_data.py')} --input-file=${javaInfo.inputFile} --service=${javaInfo.service} --module=${javaInfo.module} --credential-types=tokencredential --credential-scopes=${javaInfo.credentialScopes} --title=${javaInfo.title}`, {stdio: 'inherit'});
+    const command = `python3 ${path.join(process.cwd(), 'eng', 'mgmt', 'automation', 'generate_data.py')} --input-file=${javaInfo.inputFile} --service=${javaInfo.service} --module=${javaInfo.module} --credential-types=tokencredential --credential-scopes=${javaInfo.credentialScopes} --title=${javaInfo.title}`;
+    logger.logGreen('=================================================================')
+    logger.logGreen(command);
+    logger.logGreen('=================================================================')
+    child_process.execSync(command, {stdio: 'inherit'});
     process.chdir(sdkReposPath)
 }

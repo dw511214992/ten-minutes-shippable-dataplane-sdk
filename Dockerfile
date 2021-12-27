@@ -5,7 +5,7 @@ RUN apk add --update nodejs npm openjdk17 maven
 RUN pip3 install --upgrade wheel PyYAML requests
 RUN npm install -g autorest
 RUN npm install -g @microsoft/rush
-RUN npm install -g draft-js-sdk-release-tools
+RUN npm install -g draft-js-sdk-release-tools@0.1.12
 COPY *.tgz pack.tgz
 RUN npm install -g pack.tgz
 

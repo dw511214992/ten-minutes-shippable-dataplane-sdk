@@ -5,6 +5,7 @@ import {findPackageInRepo} from "./utils";
 import {commonFields, setCommonFields} from "../../lib/commonFields";
 import {sdkRepositories} from "../../lib/cloneRepoitory";
 import {getConfigFromReadmeMd, getServiceFromPackagePath} from "../utils";
+import {logger} from "../../utils/logger";
 
 export type JsInfo = {
     packageName: string;
@@ -29,7 +30,7 @@ export const jsInfo: JsInfo = {
 const hints = {
     packageName: '[JS SDK] What is the packageName? It should be in format @azure-rest/xxxxx. Sample: @azure-rest/storage. Please input it:',
     service: '[COMMON PARAMETER] Which service folder do you want to store your package in sdk folder? Sample: storage. Please input it:',
-    title: '[COMMON PARAMETER] What is the client name? It should be end with Client? Sample: BlobClient. Please input it:',
+    title: '[COMMON PARAMETER] What is the client name? It should be end with Client. Sample: BlobClient. Please input it:',
     description: '[JS SDK] Please input the description of sdk:',
     inputFile: '[COMMON PARAMETER] Please input the swagger files:',
     packageVersion: '[JS SDK] What is the package version you want to generate. Sample: 1.0.0-beta.1. Please input it:',
@@ -57,6 +58,10 @@ export async function jsInteractiveCli(sdkReposPath: string) {
 
 export async function generateJsDataplaneSdk(sdkReposPath: string) {
     process.chdir(path.join(sdkReposPath, sdkRepositories.js));
-    child_process.execSync(`rlc-code-gen --package-name=${jsInfo.packageName} --title=${jsInfo.title} --description=${jsInfo.description} --input-file=${jsInfo.inputFile} --package-version=${jsInfo.packageVersion} --credential-scopes=${jsInfo.credentialScopes} --service-name=${jsInfo.service}`, {stdio: 'inherit'})
+    const command = `rlc-code-gen --package-name=${jsInfo.packageName} --title=${jsInfo.title} --description=${jsInfo.description} --input-file=${jsInfo.inputFile} --package-version=${jsInfo.packageVersion} --credential-scopes=${jsInfo.credentialScopes} --service-name=${jsInfo.service}`;
+    logger.logGreen('=================================================================')
+    logger.logGreen(command);
+    logger.logGreen('=================================================================')
+    child_process.execSync(command, {stdio: 'inherit'})
     process.chdir(sdkReposPath)
 }
