@@ -1,9 +1,9 @@
 # Generate Python Dataplane SDK
 
 1. After you choose to generate python dataplane sdk, the tool may ask you which package do you want to generate:
-  ```shell
-  [PYTHON SDK] What is packageName? It should be in format azure-xxxxx, sample: azure-storage-blob. Please input it: azure-sample
-  ```
+    ```shell
+    [PYTHON SDK] What is packageName? It should be in format azure-xxxxx, sample: azure-storage-blob. Please input it: azure-sample
+    ```
 
 2. The tool will ask you to input some necessary information to generate sdk and the interactive question is based on whether `swagger/README.md` in your to-generated package folder exists or not.
 Also, if you are generating sdks for multi-language, you may not need to input some common information which you may have input in before. 
@@ -27,6 +27,15 @@ Also, if you are generating sdks for multi-language, you may not need to input s
   ```
 
 3. Then the tool will help generate codes and build the generated codes automatically. At last, the tool tells where the generated codes store.
-  ```shell
-  Please find python codes in /sdk-repos/azure-sdk-for-python/sdk/sample/sample-rest
-  ```
+    ```shell
+    Please find python codes in /sdk-repos/azure-sdk-for-python/sdk/sample/sample-rest
+    ```
+
+4. After finishing generating codes, you may need to update some files, write your own tests and samples.
+
+   *hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.*
+
+   - Remember to edit `README.md`.
+   - The tool creates test framework. If you want to add testcase, please reference [test guidance](https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/tests.md).
+   - This tool creates blank sample file under `samples`, feel free to add your own code or delete it if it is not needed.
+   - If you need to regenerate the code, run the following command: `autorest --version=latest --python --use=@autorest/python@latest --python-mode=update /sdk-repos/azure-sdk-for-python/sdk/sample/azure-sample/swagger/README.md`.
