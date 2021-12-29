@@ -5,7 +5,8 @@ import * as child_process from "child_process";
 export const sdkRepositories = {
     js: 'azure-sdk-for-js',
     python: 'azure-sdk-for-python',
-    java: 'azure-sdk-for-java'
+    java: 'azure-sdk-for-java',
+    net: 'azure-sdk-for-net'
 }
 
 export function cloneRepoIfNotExist(languages: string[]) {

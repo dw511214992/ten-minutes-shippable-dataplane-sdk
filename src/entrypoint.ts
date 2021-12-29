@@ -9,6 +9,7 @@ import {cloneRepoIfNotExist, sdkRepositories} from "./lib/cloneRepoitory";
 import {generatePythonDataplaneSdk, pythonInfo, pythonInteractiveCli} from "./languages/python/python";
 import {generateJavaDataplaneSdk, javaInfo, javaInteractiveCli} from "./languages/java/java";
 import {getPackageFolderName} from "./languages/js/utils";
+import {generateNetDataplaneSdk, netInfo, netInteractiveCli} from "./languages/net/net";
 
 async function main() {
     logger.log(`Welcome to use Ten Minutes Shippable Dataplane SDK tools to generate SDK.`);
@@ -38,6 +39,9 @@ async function main() {
             case 'java':
                 await javaInteractiveCli(sdkReposPath);
                 break;
+            case 'net':
+                await netInteractiveCli(sdkReposPath);
+                break;
 
             default:
                 throw new Error(`Don't support language ${language}`);
@@ -60,6 +64,9 @@ async function main() {
                 case 'java':
                     await generateJavaDataplaneSdk(sdkReposPath);
                     break;
+                case 'net':
+                    await generateNetDataplaneSdk(sdkReposPath);
+                    break;
                 default:
                     throw new Error(`Don't support language ${language}`);
             }
@@ -80,10 +87,13 @@ async function main() {
                 sdkPath = path.join(process.cwd(), sdkRepositories.js, 'sdk', jsInfo.service, getPackageFolderName(jsInfo.packageName))
                 break;
             case 'python':
-                sdkPath = path.join(process.cwd(), sdkRepositories.python, 'sdk', pythonInfo.packageName)
+                sdkPath = path.join(process.cwd(), sdkRepositories.python, 'sdk', pythonInfo.service, pythonInfo.packageName)
                 break;
             case 'java':
-                sdkPath = path.join(process.cwd(), sdkRepositories.java, 'sdk', javaInfo.module);
+                sdkPath = path.join(process.cwd(), sdkRepositories.java, 'sdk', pythonInfo.service, javaInfo.module);
+                break;
+            case 'net':
+                sdkPath = path.join(process.cwd(), sdkRepositories.net, 'sdk', pythonInfo.service, netInfo.namespace);
                 break;
         }
         logger.logGreen(`Please find ${language} codes in ${sdkPath}`);

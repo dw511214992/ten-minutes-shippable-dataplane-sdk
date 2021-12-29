@@ -18,7 +18,7 @@ export function getConfigFromReadmeMd(readmePath: string) {
         throw new Error(`Cannot parse yaml in ${readmePath}`);
     }
     for (const m of match) {
-        if (m.includes('input-file') && m.includes('credential-scopes')) {
+        if (m.includes('input-file') && (m.includes('credential-scopes') || m.includes('security'))) {
             const yaml = require('js-yaml');
             return yaml.load(match[1]);
         }

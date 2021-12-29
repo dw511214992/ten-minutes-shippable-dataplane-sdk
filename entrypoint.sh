@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+
+source /etc/profile
 dataplane-sdk-entrypoint
 
 if [ $? -ne 0 ]; then
