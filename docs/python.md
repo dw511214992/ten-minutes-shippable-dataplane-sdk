@@ -6,7 +6,6 @@
     ```
 
 2. The tool will ask you to input some necessary information to generate sdk and the interactive question is based on whether `swagger/README.md` in your to-generated package folder exists or not.
-Also, if you are generating sdks for multi-language, you may not need to input some common information which you may have input in before. 
 
 - When the package is generated firstly or the tool cannot find `swagger/README.md` in your to-generated package folder, the following information you may need to input:
   ```shell
@@ -28,7 +27,7 @@ Also, if you are generating sdks for multi-language, you may not need to input s
 
 3. Then the tool will help generate codes and build the generated codes automatically. At last, the tool tells where the generated codes store.
     ```shell
-    Please find python codes in /sdk-repos/azure-sdk-for-python/sdk/sample/sample-rest
+    Please find python codes in /sdk-repos/azure-sdk-for-python/sdk/sample/azure-sample
     ```
 
 4. After finishing generating codes, you may need to update some files, write your own tests and samples.

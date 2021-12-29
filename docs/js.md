@@ -6,7 +6,6 @@
     ```
 
 2. The tool will ask you to input some necessary information to generate sdk and the interactive question is based on whether `swagger/README.md` in your to-generated package folder exists or not.
-Also, if you are generating sdks for multi-language, you may not need to input some common information which you may have input in before. 
 
 - When the package is generated firstly or the tool cannot find `swagger/README.md` in your to-generated package folder, the following information you may need to input:
   ```shell
@@ -39,6 +38,7 @@ Also, if you are generating sdks for multi-language, you may not need to input s
    - [Update README.md](#update-readmemd)
    - [Write your own test](#write-your-own-test)
    - [Write samples](#write-samples)
+   - Update the CHANGELOG.md file in package folder. *we will update it automatically in the future*
 
 # Update README.md
 The docker generates a sample README.md. Please go through it and update it. The overall changes you need to do are following:
