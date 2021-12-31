@@ -28,7 +28,11 @@
     Please find java codes in /sdk-repos/azure-sdk-for-java/sdk/sample/azure-sample
     ```
 
-4. After finishing generating codes, you may need to update some files, write your own tests and samples. For more details, please refer to [Improve SDK documentation](https://github.com/Azure/azure-sdk-for-java/wiki/Protocol-Methods-Quickstart-with-AutoRest#improve-sdk-documentation).
+# Improve Generated Codes
 
-   *hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.*
+After finishing generating codes, you may need to update some files, write your own tests and samples. For more details, please refer to [Improve SDK documentation](https://github.com/Azure/azure-sdk-for-java/wiki/Protocol-Methods-Quickstart-with-AutoRest#improve-sdk-documentation).
+
+It's suggested to use vscode to connect the docker container. For details, please refer to [Vscode Connect Docker Container](./vscode-connect-docker-container.md).
+
+*hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.*
    

@@ -29,12 +29,16 @@
     ```shell
     Please find python codes in /sdk-repos/azure-sdk-for-python/sdk/sample/azure-sample
     ```
+   
+# Improve Generated Codes
 
-4. After finishing generating codes, you may need to update some files, write your own tests and samples.
+After finishing generating codes, you may need to update some files, write your own tests and samples.
 
-   *hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.*
+It's suggested to use vscode to connect the docker container. For details, please refer to [Vscode Connect Docker Container](./vscode-connect-docker-container.md).
 
-   - Remember to edit `README.md`.
-   - The tool creates test framework. If you want to add testcase, please reference [test guidance](https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/tests.md).
-   - This tool creates blank sample file under `samples`, feel free to add your own code or delete it if it is not needed.
-   - If you need to regenerate the code, run the following command: `autorest --version=latest --python --use=@autorest/python@latest --python-mode=update /sdk-repos/azure-sdk-for-python/sdk/sample/azure-sample/swagger/README.md`.
+*hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.*
+
+- Remember to edit `README.md`.
+- The tool creates test framework. If you want to add testcase, please reference [test guidance](https://github.com/Azure/azure-sdk-for-python/blob/main/doc/dev/tests.md).
+- This tool creates blank sample file under `samples`, feel free to add your own code or delete it if it is not needed.
+- If you need to regenerate the code, run the following command: `autorest --version=latest --python --use=@autorest/python@latest --python-mode=update /sdk-repos/azure-sdk-for-python/sdk/sample/azure-sample/swagger/README.md`.

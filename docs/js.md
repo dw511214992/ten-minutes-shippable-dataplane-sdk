@@ -31,16 +31,20 @@
     Please find js codes in /sdk-repos/azure-sdk-for-js/sdk/sample/sample-rest
     ```
 
-4. After finishing generating codes, you may need to update some files, write your own tests and samples.
+# Improve Generated Codes
 
-    *hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.*
+After finishing generating codes, you may need to update some files, write your own tests and samples.
+
+It's suggested to use vscode to connect the docker container. For details, please refer to [Vscode Connect Docker Container](./vscode-connect-docker-container.md).
+
+    **hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.**
 
    - [Update README.md](#update-readmemd)
    - [Write your own test](#write-your-own-test)
    - [Write samples](#write-samples)
    - Update the CHANGELOG.md file in package folder. *we will update it automatically in the future*
 
-# Update README.md
+## Update README.md
 The docker generates a sample README.md. Please go through it and update it. The overall changes you need to do are following:
 1. Replace `[Service Description]` to yours.
 1. Update the codes in Examples to a valid one.
@@ -48,7 +52,7 @@ The docker generates a sample README.md. Please go through it and update it. The
 
 Besides these change, you also can update other changes which you think it's not friendly for customer.
 
-# Write Your Own Test
+## Write Your Own Test
 The docker generates a sample test, and you can write your own test based on it.
 1. Update `test/public` and add a new function to create client. For example:
     ```typescript
@@ -72,7 +76,7 @@ The docker generates a sample test, and you can write your own test based on it.
     
 For all details about how to write tests, please go to [How to write test for RLC](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/RLC-quickstart.md#how-to-write-test-for-rlc).
 
-# Write Samples
+## Write Samples
 The docker generates a simple sample in `samples-dev/sample.ts`, you can add your own samples in the folder `samples-dev`.
 
 After adding your own samples, you can generate both JavaScript and TypeScript workable samples with the following commands.
@@ -81,5 +85,7 @@ npm install -g common/tools/dev-tool # make sure you are in the azure-sdk-for-js
 cd ${You_Package_folder} # example: /sdk-repos/azure-sdk-for-js/sdk/sample/sample-rest
 dev-tool samples publish -f 
 ```
+
+**Note: There is something wrong with `dev-tool` and we are investigating it.**
 
 Fore all details about how to write samples, please go to [How to write samples](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/RLC-quickstart.md#how-to-write-test-for-rlc).
