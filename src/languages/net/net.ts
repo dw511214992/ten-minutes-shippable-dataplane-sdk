@@ -47,7 +47,7 @@ export async function netInteractiveCli(sdkReposPath: string) {
 export async function generateNetDataplaneSdk(sdkReposPath: string) {
     process.chdir(path.join(sdkReposPath, sdkRepositories.net));
     try {
-        child_process.execSync(`git switch origin/shipPackage`);
+        child_process.execSync(`git switch shipPackage`);
     } catch (e) {
         logger.logWarn(e.message);
     }
