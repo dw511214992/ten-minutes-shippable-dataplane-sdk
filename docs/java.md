@@ -34,5 +34,5 @@ After finishing generating codes, you may need to update some files, write your 
 
 It's suggested to use vscode to connect the docker container. For details, please refer to [Vscode Connect Docker Container](./vscode-connect-docker-container.md).
 
-*hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.*
+**hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.**
    
