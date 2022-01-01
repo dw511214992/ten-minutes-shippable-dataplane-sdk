@@ -69,7 +69,6 @@ The docker generates a sample test, and you can write your own test based on it.
 2. You can add some sample tests with the filename ending with `.spec.ts`. And you can refer to `sample.spec.ts` on how to write tests.
 3. Set the environment variables required by step1 and run the test
     ```shell
-    rush build -t ${PACKAGE_NAME}
     cd ${You_Package_folder} # example: /sdk-repos/azure-sdk-for-js/sdk/sample/sample-rest
     export TEST_MODE=record && rushx test # this will run live test and generate a recordings folder, you will need to submit it in the PR. 
     ```
