@@ -70,14 +70,16 @@ class Logger {
         this.log(text.green);
     }
 
+    logYellow(text: string): void {
+        this.log(text.yellow);
+    }
+
     logError(text: string): void {
         this.log(text.red);
     }
 
     logWarn(text: string): void {
-        if (this._loggingLevel <= LoggingLevel.Warn) {
-            this.log(text.bgYellow.black);
-        }
+        this.logYellow(text);
     }
 
     logDebug(text: string): void {
