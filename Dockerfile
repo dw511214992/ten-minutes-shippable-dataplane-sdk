@@ -6,6 +6,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true PUPPETEER_EXECUTABLE_PATH=/usr/bin/chr
 COPY scripts /scripts
 RUN bash scripts/net-sdk-env-setup.sh
 RUN pip3 install --upgrade wheel PyYAML requests
+RUN npm install -g typescript
 RUN npm install -g autorest
 RUN npm install -g @microsoft/rush
 RUN npm install -g draft-js-sdk-release-tools@0.1.12
