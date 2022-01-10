@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.24.0",
-    "colors": "^1.4.0",
+    "colors": "1.4.0",
     "js-yaml": "^4.1.0",
     "pom-parser": "^1.2.0",
     "toml": "^3.0.0"
