@@ -59,7 +59,7 @@ export async function pythonInteractiveCli(sdkReposPath: string) {
 export async function generatePythonDataplaneSdk(sdkReposPath: string) {
     process.chdir(path.join(sdkReposPath, sdkRepositories.python));
     child_process.execSync(`python3 -m venv venv`, {stdio: 'inherit'});
-    child_process.execSync(`source venv/bin/activate`, {stdio: 'inherit'});
+    child_process.execSync(`. venv/bin/activate`, {stdio: 'inherit'});
     child_process.execSync(`pip3 install -r ${path.join(process.cwd(), 'scripts', 'quickstart_tooling_llc', 'dev_requirements.txt')}`, {stdio: 'inherit'});
     const command = `python3 ${path.join(process.cwd(), 'scripts', 'quickstart_tooling_llc', 'llc_initial.py')} --output-folder ${path.join(process.cwd(), 'sdk', pythonInfo.service, pythonInfo.packageName)} --input-file ${pythonInfo.inputFile} --credential-scope ${pythonInfo.credentialScopes} --package-name ${pythonInfo.packageName} --package-pprint-name "${pythonInfo.packagePrintName}" --client-name ${pythonInfo.title}`;
     logger.logGreen('=================================================================')

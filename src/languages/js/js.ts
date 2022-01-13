@@ -58,7 +58,7 @@ export async function jsInteractiveCli(sdkReposPath: string) {
 
 export async function generateJsDataplaneSdk(sdkReposPath: string) {
     process.chdir(path.join(sdkReposPath, sdkRepositories.js));
-    const command = `rlc-code-gen --package-name=${jsInfo.packageName} --title=${jsInfo.title} --description=${jsInfo.description} --input-file=${jsInfo.inputFile} --package-version=${jsInfo.packageVersion} --credential-scopes=${jsInfo.credentialScopes} --service-name=${jsInfo.service}`;
+    const command = `rlc-code-gen --package-name=${jsInfo.packageName} --title=${jsInfo.title} --description="${jsInfo.description}" --input-file=${jsInfo.inputFile} --package-version=${jsInfo.packageVersion} --credential-scopes=${jsInfo.credentialScopes} --service-name=${jsInfo.service}`;
     logger.logGreen('=================================================================')
     logger.logGreen(command);
     logger.logGreen('=================================================================')

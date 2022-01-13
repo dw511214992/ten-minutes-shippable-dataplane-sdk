@@ -32,7 +32,7 @@ export async function netInteractiveCli(sdkReposPath: string) {
     process.chdir(path.join(sdkReposPath, sdkRepositories.net));
     netInfo.namespace = await getInputFromCommand(hints.namespace, {regex: /Azure(\.[a-zA-z0-9]+)+/});
     const packagePath = findPackageInRepo(netInfo.namespace, process.cwd());
-    const readme = packagePath? getConfigFromReadmeMd(path.join(packagePath, 'src', 'autorest.md')) : undefined;
+    const readme = packagePath ? getConfigFromReadmeMd(path.join(packagePath, 'src', 'autorest.md')) : undefined;
     if (!!packagePath) {
         netInfo.service = await getInputFromCommand(hints.service, {defaultValue: getServiceFromPackagePath(packagePath)});
     } else {
@@ -52,7 +52,7 @@ export async function generateNetDataplaneSdk(sdkReposPath: string) {
         logger.logWarn(e.message);
     }
 
-    const command = `pwsh ${path.join(process.cwd(), 'eng', 'automation', 'Invoke-DataPlaneGenerateShippablePackage.ps1')} -service ${netInfo.service} -namespace ${netInfo.namespace} -sdkPath ${process.cwd()} -inputfiles ${await formatInputFileUrl(netInfo.inputFile)} -securityScope ${netInfo.credentialScopes}`;
+    const command = `pwsh ${path.join(process.cwd(), 'eng', 'scripts', 'automation', 'Invoke-DataPlaneGenerateSDKPackage.ps1')} -service ${netInfo.service} -namespace ${netInfo.namespace} -sdkPath ${process.cwd()} -inputfiles ${await formatInputFileUrl(netInfo.inputFile)} -securityScope ${netInfo.credentialScopes}`;
     logger.logGreen('=================================================================')
     logger.logGreen(command);
     logger.logGreen('=================================================================')

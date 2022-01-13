@@ -20,11 +20,11 @@ This project provides a docker image, which can get data-plane sdk of different 
 
 1. Run docker container with command:
     ```shell
-    docker run -it -v {path_to_your_sdk_repos}:/sdk-repos dw225/data-plane-sdk:v1.0
+    docker run -it -v {path_to_your_sdk_repos}:/sdk-repos dw225/data-plane-sdk:v1.2
     ```
    For example:
     ```shell
-    docker run -it -v /home/weidong/sdk-repos:/sdk-repos dw225/data-plane-sdk:v1.0
+    docker run -it -v /home/weidong/sdk-repos:/sdk-repos dw225/data-plane-sdk:v1.2
     ```
 
 2. After the docker container is started, it will ask you which language you want to get:

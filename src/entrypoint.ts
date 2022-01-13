@@ -12,7 +12,7 @@ import {getPackageFolderName} from "./languages/js/utils";
 import {generateNetDataplaneSdk, netInfo, netInteractiveCli} from "./languages/net/net";
 
 async function main() {
-    logger.log(`Welcome to use Ten Minutes Shippable Dataplane SDK tools to generate SDK.`);
+    logger.log(`Welcome to use Ten Minutes Started Dataplane SDK tools to generate SDK.`);
 
     if (!fs.existsSync('sdk-repos')) {
         throw new Error(`Please mount folder sdk-repos`);

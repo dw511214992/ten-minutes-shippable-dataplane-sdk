@@ -15,6 +15,4 @@ Please follow the following steps to connect your vscode to docker container.
 Then you can write your codes in vscode.
 
 ## Further Help
-We have installed some extensions in docker container, which give you better experience to write your codes. You can find they are:
-![extensions](extensions.png)
-If you want to install other extensions, you can install them directly.
+We have installed some extensions in docker container, which give you better experience to write your codes. You can find them in extension of vscode when you have connected your vscode to docker container. If you want to install other extensions, you can install them directly.
