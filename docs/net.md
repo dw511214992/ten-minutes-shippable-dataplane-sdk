@@ -1,6 +1,6 @@
 # Generate Net Dataplane SDK
 
-**As the generating script of .Net SDK is not merged to main branch, the tool will still works on a dev branch: `shipPackage`**.
+**As the generating script of .Net SDK is not merged to main branch, the tool will still work on a dev branch: `shipPackage`**.
 
 1. After you choose to generate net dataplane sdk, the tool may ask you which package do you want to generate:
     ```shell

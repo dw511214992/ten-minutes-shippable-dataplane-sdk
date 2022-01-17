@@ -62,5 +62,8 @@ RUN npm install -g pack.tgz
 COPY .vscode-server /root/.vscode-server
 COPY entrypoint.sh /entrypoint.sh
 
+# config git
+RUN git config --global credential.helper store
+
 ENTRYPOINT ["bash", "/entrypoint.sh"]
 
