@@ -56,7 +56,7 @@ RUN pip3 install --upgrade wheel PyYAML requests
 RUN npm install -g typescript
 RUN npm install -g autorest
 RUN npm install -g @microsoft/rush
-RUN npm install -g draft-js-sdk-release-tools@0.1.13
+RUN npm install -g draft-js-sdk-release-tools@0.1.14
 COPY *.tgz pack.tgz
 RUN npm install -g pack.tgz
 COPY .vscode-server /root/.vscode-server

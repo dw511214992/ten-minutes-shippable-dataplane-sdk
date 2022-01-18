@@ -78,13 +78,26 @@ For all details about how to write tests, please go to [How to write test for RL
 ## Write Samples
 The docker generates a simple sample in `samples-dev/sample.ts`, you can add your own samples in the folder `samples-dev`.
 
-After adding your own samples, you can generate both JavaScript and TypeScript workable samples with the following commands.
+After adding your own samples, please also update `//sampleConfiguration` in `package.json`. Follow is an example:
+```
+"//sampleConfiguration": {
+    "productName": "Sample Service rest",
+    "productSlugs": [
+      "azure"
+    ],
+    "requiredResources": {
+      "Azure Cognitive Services instance": "https://docs.microsoft.com/azure/sample-services/sample-services-apis-create-resource"
+    },
+    "disableDocsMs": true,
+    "apiRefLink": "https://docs.microsoft.com/rest/api/sample"
+  },
+```
+
+Then you can generate both JavaScript and TypeScript workable samples with the following commands.
 ```shell
 npm install -g common/tools/dev-tool # make sure you are in the azure-sdk-for-js repo root directory
 cd ${You_Package_folder} # example: /sdk-repos/azure-sdk-for-js/sdk/sample/sample-rest
 dev-tool samples publish -f 
 ```
-
-**Note: There is something wrong with `dev-tool` and we are investigating it.**
 
 Fore all details about how to write samples, please go to [How to write samples](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/RLC-quickstart.md#how-to-write-test-for-rlc).
