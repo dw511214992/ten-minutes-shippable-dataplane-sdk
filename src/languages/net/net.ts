@@ -46,11 +46,6 @@ export async function netInteractiveCli(sdkReposPath: string) {
 
 export async function generateNetDataplaneSdk(sdkReposPath: string) {
     process.chdir(path.join(sdkReposPath, sdkRepositories.net));
-    try {
-        child_process.execSync(`git switch shipPackage`);
-    } catch (e) {
-        logger.logWarn(e.message);
-    }
 
     const command = `pwsh ${path.join(process.cwd(), 'eng', 'scripts', 'automation', 'Invoke-DataPlaneGenerateSDKPackage.ps1')} -service ${netInfo.service} -namespace ${netInfo.namespace} -sdkPath ${process.cwd()} -inputfiles ${await formatInputFileUrl(netInfo.inputFile)} -securityScope ${netInfo.credentialScopes}`;
     logger.logGreen('=================================================================')

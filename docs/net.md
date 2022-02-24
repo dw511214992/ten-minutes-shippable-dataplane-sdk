@@ -1,7 +1,5 @@
 # Generate Net Dataplane SDK
 
-**As the generating script of .Net SDK is not merged to main branch, the tool will still work on a dev branch: `shipPackage`**.
-
 1. After you choose to generate net dataplane sdk, the tool may ask you which package do you want to generate:
     ```shell
     [NET SDK] What is the namespace? It should be in format Azure.xxxx.xxxx. Sample: Azure.Storage.Blob. Please input it: Azure.Template.Sample
@@ -35,8 +33,6 @@
 After finishing generating codes, you may need to update some files, write your own tests and samples.
 
 It's suggested to use vscode to connect the docker container. For details, please refer to [Vscode Connect Docker Container](./vscode-connect-docker-container.md).
-
-**hint: docker container creates a shell terminal when automation tool finishes, and please run all commands in the shell terminal.**
 
 - [Update README.md](https://github.com/Azure/azure-sdk-for-net/blob/shipPackage/doc/Data%20Plane%20Code%20Generation/AzureSDKCodeGeneration_DataPlane_Quickstart.md#readmemd)
 - [Write your own test](https://github.com/Azure/azure-sdk-for-net/blob/shipPackage/doc/Data%20Plane%20Code%20Generation/AzureSDKCodeGeneration_DataPlane_Quickstart.md#tests)
